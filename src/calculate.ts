@@ -19,7 +19,6 @@ export class Calculate implements ICalculate {
         this._items.forEach((v) => {
             this._total += v.getQtd() * v.getValue()
         });
-        console.log(`TOTAL DA CONTA ${this._total}`);
 
         var qtdToPay = parseFloat((this._total / this._emails.length).toFixed(2))
 
