@@ -24,20 +24,22 @@ export class Calculate implements ICalculate {
         var qtdToPay = parseFloat((this._total / this._emails.length).toFixed(2))
 
         for (var i = 0; i < this._emails.length; i++) {
-            if (this._emails.length % 2 != 0 && qtdToPay % 2 != 0) {
-                if (i == (this._emails.length - 1)) {
-                    if (parseFloat((this._total - (qtdToPay * this._emails.length)).toFixed(2)) >= 0) {
-                        qtdToPay += 0.01;
-                    } else {
-                        qtdToPay -= 0.01;
-                    }
-                }
-            }
             console.log(this._emails[i].getEmail());
-            this.dividedValue.set(this._emails[i].getEmail(), qtdToPay);
+            this.dividedValue.set(this._emails[i].getEmail(), this._centavos(qtdToPay, i));
         }
         return this.dividedValue;
     }
 
-
+    _centavos(qtdToPay: number, i: number): number {
+        if (this._emails.length % 2 != 0 && qtdToPay % 2 != 0) {
+            if (i == (this._emails.length - 1)) {
+                if (parseFloat((this._total - (qtdToPay * this._emails.length)).toFixed(2)) >= 0) {
+                    qtdToPay += 0.01;
+                } else {
+                    qtdToPay -= 0.01;
+                }
+            }
+        }
+        return qtdToPay;
+    }
 }
