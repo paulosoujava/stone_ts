@@ -31,7 +31,6 @@ export class Calculate implements ICalculate {
         var qtdToPay = parseFloat((this._total / this._emails.length).toFixed(2))
 
         for (var i = 0; i < this._emails.length; i++) {
-            console.log(this._emails[i].getEmail());
             this.dividedValue.set(this._emails[i].getEmail(), this._centavos(qtdToPay, i));
         }
         return this.dividedValue;
