@@ -15,6 +15,14 @@ export class Calculate implements ICalculate {
     }
     calculate(): Map<string, Number> {
 
+        if (this._validateList()) {
+            console.log(
+                "Ops nobody has money"
+            );
+
+            return this.dividedValue;
+        }
+
         // calculate item
         this._items.forEach((v) => {
             this._total += v.getQtd() * v.getValue()
@@ -40,5 +48,8 @@ export class Calculate implements ICalculate {
             }
         }
         return qtdToPay;
+    }
+    _validateList() {
+        return this._emails.length == 0;
     }
 }
